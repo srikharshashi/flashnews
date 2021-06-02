@@ -1,21 +1,23 @@
-<<<<<<< HEAD
-# newsapp
+# Flash News
 
-A new Flutter project.
+___________
 
-## Getting Started
+- Powered by [NewsAPI](http://newsapi.org/ "NewsAPI")
+- The last news app you might ever need
+- This app caters to all your news need from categorical news to news search
+- FlashNew aims to implement all the features provided by NewsAPI
+___
+###### This app is still in development
 
-This project is a starting point for a Flutter application.
+***
+### Developing and Environment Setup
+___
+1)[Install Flutter](http://https://flutter.dev/docs/get-started/install "Install Flutter")
+2) Run `flutter doctor` to check if you installed all the prerequisites
+3) Use an IDE like VSCode/Android Studio to run `main.dart` in lib folder
+OR
+4) Run `flutter run lib/main.dart ` when you are in the main directory.
 
-A few resources to get you started if this is your first Flutter project:
+###Screenshots
+![](![Screenshot 2021-06-03 001141](https://user-images.githubusercontent.com/37980605/120537014-6b0e2580-c402-11eb-94d7-f96ce3a49416.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-# flashnews
-Flash News is a news app that is made in Flutter and fetches News Articles from newsapi.org
->>>>>>> 079528f4820b125de8c7e45436d0e36f7a861f12
