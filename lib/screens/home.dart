@@ -13,9 +13,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
+  News newsob;
   List<CategoryModel> categories = [];
-  List<ArticleModel> articles = [];
+  var articles = [];
   bool _loading = true;
+  String cat="business";
 
   void initState() {
     // TODO: implement initState
@@ -23,12 +25,18 @@ class _HomeState extends State<Home> {
     print("In init State");
     categories = getCategories();
     print("Loaded cats");
-    getnews();
+    getnews(cat);
+
   }
 
-  void getnews() async {
-    News newsob = News();
-    await newsob.getnews();
+   void getnews(String cat) async {
+
+   setState(() {
+     _loading=true;
+   });
+     newsob = News();
+    await newsob.getnews(cat);
+    articles.clear();
     articles = newsob.news;
     setState(() {
       _loading = false;
@@ -63,44 +71,51 @@ class _HomeState extends State<Home> {
               ),
             )
           : Container(
-              child: Column(
+              child: ListView(
                 children: [
                   //Category
-                  ScrollConfiguration(
-                    behavior: MyBehavior(),
-                    
-
-                        child: Container(
+                   Container(
                           height: 100,
                           child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: categories.length,
                               itemBuilder: (context, index) {
-                                return Container(
-
-                                    child: CatTile(
-                                        imgUrl: categories[index].imageUrl,
-                                        catName: categories[index].catName));
+                                return InkWell(
+                                  onTap:  ()
+                                  {
+                                    print(categories[index].catName.toLowerCase());
+                                     getnews(categories[index].catName.toLowerCase());
+                                      print("After on Tap");
+                                  },
+                                  child: Container(
+                                      child: CatTile(
+                                          imgUrl: categories[index].imageUrl ?? "",
+                                          catName: categories[index].catName)),
+                                );
                               }),
                         ),
 
-                    ),
+
                   //Blog Cards
-                      Expanded(
-                        child: Container(
+                      Container(
                           child: ListView.builder(
+                            physics: ClampingScrollPhysics(),
+                            shrinkWrap: true,
                             itemCount: articles.length,
                               itemBuilder: (context,index)
                           {
-                            return BlogTile(imageUrl: articles[index].urlToImage ?? "",
+                            print(articles[index].urlToImage);
+                            return BlogTile(
+                              imageUrl: articles[index].urlToImage ?? "https://images.unsplash.com/photo-1458419948946-19fb2cc296af?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
                               title: articles[index].title ?? "",
                               desc: articles[index].description ?? "",
+                              url: articles[index].url ?? "",
                             );
                           }
                           ),
 
                         ),
-                      ),
+
 
 
                   ],
