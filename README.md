@@ -1,6 +1,5 @@
 # Flash News
 
-___________
 
 - Powered by [NewsAPI](http://newsapi.org/ "NewsAPI")
 - The last news app you might ever need
